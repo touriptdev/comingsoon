@@ -1,125 +1,3 @@
-// import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
-// import { HugeiconsIcon } from "@hugeicons/react";
-// import { useState } from "react";
-// import { NavLink } from "react-router-dom";
-
-// function App() {
-//   // const [count, setCount] = useState(0);
-
-//   const cities = [
-//     {
-//       name: "New York",
-//       country: "USA",
-//       image:
-//         "https://images.unsplash.com/photo-1639775722393-6bd891bae010?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0",
-//     },
-//     {
-//       name: "Paris",
-//       country: "France",
-//       image:
-//         "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0",
-//     },
-//     {
-//       name: "Tokyo",
-//       country: "Japan",
-//       image:
-//         "https://images.unsplash.com/photo-1557409518-691ebcd96038?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//     },
-//     {
-//       name: "Sydney",
-//       country: "Australia",
-//       image:
-//         "https://images.unsplash.com/photo-1734007929985-ced7bdd53843?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//     },
-//     {
-//       name: "London",
-//       country: "United Kingdom",
-//       image:
-//         "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//     },
-//     {
-//       name: "Dubai",
-//       country: "United Arab Emirates",
-//       image:
-//         "https://images.unsplash.com/photo-1518684079-3c830dcef090?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//     },
-//     {
-//       name: "Rome",
-//       country: "Italy",
-//       image:
-//         "https://images.unsplash.com/photo-1575540668264-4485aacd78c3?q=80&w=2148&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//     },
-//     {
-//       name: "Barcelona",
-//       country: "Spain",
-//       image:
-//         "https://images.unsplash.com/photo-1583422409516-2895a77efded?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//     },
-//     {
-//       name: "Singapore",
-//       country: "Singapore",
-//       image:
-//         "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=2104&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//     },
-//     {
-//       name: "Bangkok",
-//       country: "Thailand",
-//       image:
-//         "https://images.unsplash.com/photo-1668107710159-10fbbab2a9dd?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//     },
-//     {
-//       name: "Cape Town",
-//       country: "South Africa",
-//       image:
-//         "https://images.unsplash.com/photo-1591742708307-ce49d19450d4?q=80&w=2148&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//     },
-//     {
-//       name: "Istanbul",
-//       country: "Turkey",
-//       image:
-//         "https://images.unsplash.com/photo-1466442929976-97f336a657be?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//     },
-//   ];
-
-//   return (
-//     <section className="relative flex h-screen w-full flex-col py-16 gap-16 items-center justify-start bg-gradient-to-t from-emerald-900 from-10% to-emerald-50 ">
-//       <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none"></div>
-//       <div className="flex flex-col items-center justify-center gap-4">
-//         <div className="flex flex-col items-center justify-center">
-//           <img
-//             src={"/logo.svg"}
-//             alt="touript logo"
-//             className="w-18 h-18 object-contain rounded-full"
-//           />
-//           <span className="text-2xl font-medium text-gray-900">touript</span>
-//         </div>
-
-//         <p className="w-2xl text-base/8 leading-relaxed font-normal text-gray-900 opacity-70 text-center">
-//           Touript is a travel community that connects explorers and offers smart
-//           flight booking, combining shared insights with great deals for
-//           memorable trips.
-//         </p>
-//       </div>
-
-//       <div className="flex items-start justify-start gap-8 w-2xl overflow-x-auto">
-//         {cities.map((city, id) => (
-//           <div key={id} className="flex flex-col items-start justify-start gap-2 shrink-0 ">
-//             <img
-//               src={city.image}
-//               alt={city.name}
-//               className="w-36 h-36 shadow-xl  shadow-gray-900/10 rounded-2xl object-cover"
-//             />
-//           <span className="text-gray-900 opacity-50 font-medium whitespace-nowrap">{city.name}</span>
-//           </div>
-//         ))}
-//       </div>
-
-//     </section>
-//   );
-// }
-
-// export default App;
-
 import { useEffect, useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion, useAnimation } from "framer-motion";
@@ -133,10 +11,28 @@ function App() {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted email:", email);
-    setEmail("");
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || ""}/api/emails`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setEmail(""); // Clear input
+      } else {
+        alert(data.message || "Error submitting email");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong!");
+    }
   };
 
   const cities = [
@@ -232,7 +128,7 @@ function App() {
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none" />
 
       {/* Logo + text */}
-      <div className="flex flex-col items-center gap-16 justify-center w-sm sm:w-2xl">
+      <div className="flex flex-col items-center gap-16 justify-center w-sm px-8 sm:w-2xl sm:px-0">
         <div className="flex flex-col items-center justify-center gap-4">
           <div className="flex flex-col items-center justify-center">
             <img
@@ -262,7 +158,7 @@ function App() {
             {[...cities, ...cities].map((city, id) => (
               <div
                 key={id}
-                className="flex flex-col items-start justify-start gap-2 shrink-0 p-4 bg-white rounded-lg no-scrollbar"
+                className="flex flex-col items-center justify-center gap-2 shrink-0 p-4 bg-white rounded-lg no-scrollbar"
               >
                 <img
                   src={city.image}
