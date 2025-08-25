@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
-// eslint-disable-next-line no-unused-vars
 import { motion, useAnimation } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { CancelCircleIcon, Mail01Icon } from "@hugeicons/core-free-icons";
 
 function App() {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
+    if (message) setMessage(""); // Clear any previous messages
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setMessage("");
+
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || ""}/api/emails`, {
+      // Use proxy in development, direct path in production
+      const apiUrl = "/api/emails";
+
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,16 +30,36 @@ function App() {
         body: JSON.stringify({ email }),
       });
 
-      const data = await response.json();
+      // Check if response has content
+      const contentType = response.headers.get("content-type");
+      let data = {};
+
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+        data = await response.json();
+      } else {
+        // If not JSON, treat as text
+        const text = await response.text();
+        data = { message: text || "Unknown error occurred" };
+      }
 
       if (response.ok) {
         setEmail(""); // Clear input
+        setMessage("Thank you. You have successfully joined the waitlist!");
       } else {
-        alert(data.message || "Error submitting email");
+        setMessage(
+          data.message || `Error: ${response.status} ${response.statusText}`
+        );
       }
     } catch (error) {
-      console.error(error);
-      alert("Something went wrong!");
+      console.error("Fetch error:", error);
+
+      if (error.name === "TypeError" && error.message.includes("fetch")) {
+        setMessage("Sorry for inconvenience. Technical Errors");
+      } else {
+        setMessage("Something went wrong. Please try again.");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -124,7 +152,7 @@ function App() {
   }, [controls]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center py-16  bg-gray-200 w-full">
+    <section className="relative min-h-screen flex items-center justify-center py-16 bg-gray-200 w-full">
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none" />
 
       {/* Logo + text */}
@@ -148,7 +176,6 @@ function App() {
         {/* Cities with mask */}
         <div className="relative w-full overflow-x-auto">
           <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-gray-200 to-transparent z-10" />
-
           <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-gray-200 to-transparent z-10" />
 
           <motion.div
@@ -197,11 +224,12 @@ function App() {
               onChange={handleEmail}
               autoComplete="email"
               required
-              className="h-14 w-full  border rounded-lg border-gray-300 px-14 transition-all duration-300 focus:ring-2 focus:ring-gray-900 focus:outline-none"
+              disabled={loading}
+              className="h-14 w-full border rounded-lg border-gray-300 px-14 transition-all duration-300 focus:ring-2 focus:ring-gray-900 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
             />
 
             {/* Trailing icon (Clear button) */}
-            {email && (
+            {email && !loading && (
               <div
                 className="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer text-gray-400 transition-all delay-100 duration-300 hover:text-emerald-500"
                 onClick={() => setEmail("")}
@@ -214,20 +242,35 @@ function App() {
               </div>
             )}
           </div>
+
           <button
             type="submit"
-            className="w-full h-14 sm:flex-1 bg-emerald-600 rounded-lg text-white font-medium hover:bg-emerald-500 hover:shadow-lg hover:shadow-gray-900/10 transition-all ease-in-out duration-300 cursor-pointer"
+            disabled={loading || !email}
+            className="w-full h-14 sm:flex-1 bg-emerald-600 rounded-lg text-white font-medium hover:bg-emerald-500 hover:shadow-lg hover:shadow-gray-900/10 transition-all ease-in-out duration-300 cursor-pointer  disabled:cursor-not-allowed"
           >
-            Join Waitlist
+            {loading ? "Joining..." : "Join Waitlist"}
           </button>
         </form>
+
+        {/* Message display */}
+        {message && (
+          <div
+            className={`text-center p-3 rounded-lg font-medium ${
+              message.includes("Thank")
+                ? "bg-emerald-50 text-emerald-700 "
+                : "bg-red-50 text-red-500 "
+            }`}
+          >
+            {message}
+          </div>
+        )}
 
         <div className="flex flex-col items-center justify-center gap-4">
           <span className="text-xl font-medium text-gray-900">
             Launching soon
           </span>
 
-          <p className="w-full text-base/8 leading-relaxed font-normal text-gray-900  text-center">
+          <p className="w-full text-base/8 leading-relaxed font-normal text-gray-900 text-center">
             <span className="opacity-50">
               We are wrapping things up and preparing to launch very soon. We
               would love for you to be part of our journey.
@@ -242,7 +285,7 @@ function App() {
           </p>
         </div>
 
-        <div className="flex flex-col items-center justify-center w-full gap-4 text-sm whitespace-nowrapgit init sm:text-base">
+        <div className="flex flex-col items-center justify-center w-full gap-4 text-sm sm:text-base">
           <div className="flex items-center justify-center gap-8">
             <a
               href="#"
