@@ -22,7 +22,7 @@ app.use(express.json({ limit: "10mb" }));
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5173", // Vite default port
-  process.env.FRONTEND_URL,
+  "https://touript-comingsoon.onrender.com",
   // Add your Render frontend URL here when you get it
 ].filter(Boolean);
 
