@@ -278,15 +278,15 @@ function App() {
             <span className="opacity-100 underline">Join our waitlist</span>{" "}
             <span className="opacity-50">
               to be among the first to know when we go live.
-            </span>
+            </span>{" "}
             <span className="w-full text-base/8 leading-relaxed font-normal text-gray-900 opacity-50 text-center">
               If you have any questions, please feel free to send us an email.
             </span>
           </p>
         </div>
 
-        <div className="flex flex-col items-center justify-center w-full gap-4 text-sm sm:text-base">
-          <div className="flex items-center justify-center gap-8">
+        <div className="flex flex-col items-center justify-center w-full gap-4 text-base">
+          <div className="flex flex-col items-center justify-center gap-8 sm:flex-row">
             <a
               href="#"
               onClick={() =>
@@ -295,24 +295,26 @@ function App() {
               }
               className="underline opacity-50 hover:opacity-100"
             >
-              Send us Email
+              Send Us Email
             </a>
-            <a
-              href="https://policies.google.com/terms?hl=en"
-              className="opacity-50 hover:opacity-100"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Terms & Conditions
-            </a>
-            <a
-              href="https://policies.google.com/privacy?hl=en"
-              className="opacity-50 hover:opacity-100"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Privacy Policy
-            </a>
+            <div className="flex flex-wrap items-center justify-center gap-8">
+              <a
+                href="https://policies.google.com/terms?hl=en"
+                className="opacity-50 hover:opacity-100"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Terms & Conditions
+              </a>
+              <a
+                href="https://policies.google.com/privacy?hl=en"
+                className="opacity-50 hover:opacity-100"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Privacy Policy
+              </a>
+            </div>
           </div>
           <div className="h-px w-full bg-gray-300"></div>
           <span className="text-gray-900 opacity-50 text-sm">
