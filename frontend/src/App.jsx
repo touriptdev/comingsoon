@@ -174,18 +174,15 @@ function App() {
         </div>
 
         {/* Cities with mask */}
-        <div className="relative w-full overflow-x-auto">
+        <div className="relative w-full overflow-x-auto no-scrollbar">
           <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-gray-200 to-transparent z-10" />
           <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-gray-200 to-transparent z-10" />
 
-          <motion.div
-            className="flex gap-8 w-max no-scrollbar"
-            animate={controls}
-          >
+          <motion.div className="flex gap-8 w-max " animate={controls}>
             {[...cities, ...cities].map((city, id) => (
               <div
                 key={id}
-                className="flex flex-col items-center justify-center gap-2 shrink-0 p-4 bg-white rounded-lg no-scrollbar"
+                className="flex flex-col items-center justify-center gap-2 shrink-0 p-4 bg-white rounded-lg "
               >
                 <img
                   src={city.image}
