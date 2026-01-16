@@ -197,7 +197,7 @@ function App() {
           </motion.div>
         </div>
 
-        <form
+        {/* <form
           onSubmit={handleSubmit}
           className="flex flex-col w-full items-center justify-center gap-4 sm:flex-row"
         >
@@ -206,12 +206,12 @@ function App() {
               Email Address
             </label>
 
-            {/* Leading icon */}
+
             <div className="absolute top-1/2 left-4 -translate-y-1/2 text-gray-900">
               <HugeiconsIcon icon={Mail01Icon} size={24} strokeWidth={2} />
             </div>
 
-            {/* Input field */}
+
             <input
               id="email"
               type="email"
@@ -225,7 +225,6 @@ function App() {
               className="h-14 w-full border rounded-lg border-gray-300 px-14 transition-all duration-300 focus:ring-2 focus:ring-gray-900 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
             />
 
-            {/* Trailing icon (Clear button) */}
             {email && !loading && (
               <div
                 className="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer text-gray-400 transition-all delay-100 duration-300 hover:text-emerald-500"
@@ -247,7 +246,7 @@ function App() {
           >
             {loading ? "Joining..." : "Join Waitlist"}
           </button>
-        </form>
+        </form> */}
 
         {/* Message display */}
         {message && (
